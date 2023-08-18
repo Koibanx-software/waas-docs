@@ -1,0 +1,12 @@
+# Transacciones
+
+Las transacciones son una parte esencial del _core_ de **_WaaS_**. Después de cada operación con un token, se registra una transacción.
+
+Cada transacción tiene un identificador único (ID). Este ID se puede usar para consultar la información asociada con la operación del token. Esto puede incluir detalles como el tipo de operación (mint, burn, distribución o transfer.), los participantes involucrados (por ejemplo, los usuarios locales emisor y receptor), la cantidad de tokens involucrados y la fecha y hora de la operación.
+
+Esto proporciona un registro auditable de todas las operaciones con tokens, ver el historial de transacciones de un usuario local, realizar análisis y crear estadisticas.
+
+Contenido:
+
+-   [Obtener detalles](./find/find.md)
+-   [Obtener todos](./find/findAll.md)
