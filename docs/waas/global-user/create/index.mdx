@@ -1,0 +1,38 @@
+---
+title: "Crear"
+sidebar_position: 1
+---
+
+# Crear un usuario global
+
+Crea un nuevo usuario global en WaaS. A continuación se muestra el formato y los detalles de la solicitud:
+
+### <span>POST</span> /global-users/sign-up
+
+---
+
+```bash
+curl --request POST \
+  --url '{baseUrl}/global-users/sign-up' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "username": "MyGlobalUser@koibanx.com",
+    "name": "MyName",
+    "lastName": "MyLastName"
+}'
+```
+
+### Parámetros del Cuerpo (JSON)
+
+- `username`: Correo electrónico del usuario global.
+- `name`: Nombre del usuario global.
+- `lastName`: Apellido del usuario global.
+
+### Respuestas Posibles
+
+- `200 OK`: El usuario global se creó con éxito. La respuesta estará vacía.
+- `4xx Bad Request`: Se produjo un error debido a parámetros inválidos. Consulta el cuerpo de la respuesta para obtener más detalles sobre el error.
+
+### Diagrama de Flujo:
+
+![Create Global User](./createGlobalUser.png)

@@ -13,8 +13,8 @@ const defaultSettings = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "Documentación WaaS",
+  tagline: "Wallet as a Service",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -82,16 +82,10 @@ const config = {
             position: "left",
             label: "Documentación",
           },
-          {
-            label: "Tutorial",
-            sidebarId: "tutorialSidebar",
-            type: "docSidebar",
-            position: "left",
-          },
-          {
+          /*{
             label: "API Reference",
             to: "/api/",
-          },
+          },*/
           {
             label: "Dashboard",
             href: "https://dashboard-waas.dev.build.koibanx.com/",

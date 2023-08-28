@@ -1,9 +1,0 @@
-title Flow to generate a new secret for a WAAS project
-
-Client->WAAS:PUT /projects/secret 
-note over Client,WAAS:(OTP)
-WAAS->Build:Validate OTP
-Build->WAAS:OTP is valid
-WAAS->DB: Update Secret
-DB->WAAS: Updated secret
-WAAS->Client:Successfully Updated Secret

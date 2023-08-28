@@ -1,8 +1,15 @@
+---
+title: "Obtener detalles de una distribución"
+sidebar_position: 2
+---
+
 # Obtener Detalles de una Distribución
 
 Obtiene los detalles de una distribución realizada previamente. Este endpoint solo está disponible para tokens de tipo 'centralizedSupplyToken'.
 
-### <span style='color: #81d294;'>GET</span> /{prefix}/distributions/{distributionId}
+### <span>GET</span> /{prefix}/distributions/{distributionId}
+
+---
 
 #### Autenticación de Usuarios Globales (JWT)
 
@@ -41,21 +48,21 @@ curl --request GET \
 
 ```json
 {
-	"id": "ff2ba3c0-c4ae-4900-beb5-638e3b48074c",
-	"totalDeposits": 2,
-	"tokenId": "616efaef-a2b5-41a8-9373-b362234c46ec",
-	"status": "successfullyComplete",
-	"deposits": [
-		{
-			"userId": "40f69ff6-38e2-4033-a5de-48f02d6ef4eb",
-			"amount": 1000
-		},
-		{
-			"userId": "518eb8b8-949d-4ba9-a615-f3f1799aae62",
-			"amount": 1000
-		}
-	],
-	"idsWithErrors": []
+  "id": "ff2ba3c0-c4ae-4900-beb5-638e3b48074c",
+  "totalDeposits": 2,
+  "tokenId": "616efaef-a2b5-41a8-9373-b362234c46ec",
+  "status": "successfullyComplete",
+  "deposits": [
+    {
+      "userId": "40f69ff6-38e2-4033-a5de-48f02d6ef4eb",
+      "amount": 1000
+    },
+    {
+      "userId": "518eb8b8-949d-4ba9-a615-f3f1799aae62",
+      "amount": 1000
+    }
+  ],
+  "idsWithErrors": []
 }
 ```
 
@@ -63,7 +70,7 @@ curl --request GET \
 
 ```json
 {
-	"reason": "NOT_FOUND",
-	"msg": "User with ID: <1> not found"
+  "reason": "NOT_FOUND",
+  "msg": "User with ID: <1> not found"
 }
 ```

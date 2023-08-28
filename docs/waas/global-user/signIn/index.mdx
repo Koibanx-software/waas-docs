@@ -1,0 +1,32 @@
+---
+title: "Iniciar sesión"
+sidebar_position: 3
+---
+
+# Iniciar sesión
+
+Permite a un usuario iniciar sesión mediante el envío de una solicitud con un username and password
+
+### <span>POST</span> /sign-in
+
+```
+curl --request POST \
+  --url {baseUrl}/sign-in \
+  --header 'Authorization: Basic {token}'
+```
+
+### Parámetros de la solicitud
+
+La solicitud debe incluir los siguientes encabezados:
+
+- `Authorization`: Token de autorización en formato básico (username:password).
+
+### Respuesta
+
+- `200 OK`: Inicio de sesión exitoso. se enviara un OTP al correo del username
+
+- `4xx Invalid Parameters`: Se encontraron parámetros inválidos en la solicitud. El cuerpo de la respuesta contendrá información adicional sobre el error.
+
+### Diagrama de flujo:
+
+![Sign In](./signin.png)

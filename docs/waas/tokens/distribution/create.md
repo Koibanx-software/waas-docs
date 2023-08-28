@@ -1,8 +1,15 @@
+---
+title: "Distribuir tokens desde Wallet Centralizada"
+sidebar_position: 1
+---
+
 # Distribuir Tokens desde Wallet Centralizada
 
 Distribuye una cantidad específica de un token desde la wallet centralizada a los usuarios locales. Este endpoint solo está disponible para tokens de tipo 'centralizedSupplyToken'. La suma de todas las cantidades a distribuir debe ser menor o igual al balance actual de la wallet centralizada.
 
-### <span style='color: #81d294;'>POST</span> /{prefix}/distributions
+### <span>POST</span> /{prefix}/distributions
+
+---
 
 #### Autenticación de Usuarios Globales (JWT)
 
@@ -65,7 +72,7 @@ curl --request POST \
 
 ```json
 {
-	"reason": "NOT_FOUND",
-	"msg": "User with ID: <1> not found"
+  "reason": "NOT_FOUND",
+  "msg": "User with ID: <1> not found"
 }
 ```

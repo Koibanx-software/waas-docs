@@ -1,6 +1,0 @@
-title Flow to find Balances by userId
-
-Client->WAAS:GET /{prefix}/balances/users/:userId
-WAAS->DB: Find balances
-DB->WAAS: balances Found
-WAAS->Client:Balances Found Successfully
