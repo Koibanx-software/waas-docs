@@ -69,4 +69,4 @@ Los campos en la respuesta son:
 
 ### Diagrama de secuencia
 
-![Flujo crear un token](./getToken.png "FlowCreateToken")
+![Flujo crear un token](/img/docs/tokens/getToken.png "FlowCreateToken")
