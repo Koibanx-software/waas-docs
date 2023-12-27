@@ -25,13 +25,17 @@ curl --request POST \
     "deposits": [
       {
         "userId": "987f6543-e21b-48c3-a456-987654321000",
-        "amount": 1000
+        "amount": 1000,
+        "extraData":{
+          "test":"prueba"
+        }
       },
       {
         "userId": "987f6543-e21b-48c3-a456-987654321001",
         "amount": 1000
       }
-    ]
+    ],
+    "message": "Distribucion de mayo"
   }'
 ```
 
@@ -49,13 +53,17 @@ curl --request POST \
     "deposits": [
       {
         "userId": "987f6543-e21b-48c3-a456-987654321000",
-        "amount": 1000
+        "amount": 1000,
+        "extraData":{
+          "test":"prueba"
+        }
       },
       {
         "userId": "987f6543-e21b-48c3-a456-987654321001",
         "amount": 1000
       }
-    ]
+    ],
+    "message": "Distribucion de mayo"
   }'
 ```
 
@@ -63,16 +71,10 @@ curl --request POST \
 
 - `id`: UUID o Mongo ID para crear la distribución, la cual se podrá consultar en el futuro.
 - `tokenId`: ID del token existente.
-- `deposits`: Lista de usuarios y cuánto se quiere distribuir a cada uno. Cada objeto en la lista debe tener un `userId` (UUID o Mongo ID del usuario local) y un `amount` (cantidad a distribuir).
+- `deposits`: Lista de usuarios y cuánto se quiere distribuir a cada uno. Cada objeto en la lista debe tener un `userId` (UUID o Mongo ID del usuario local), un `amount` (cantidad a distribuir) y extraData (Opcional) almacena información adicional que no se ajusta directamente a los campos estándar o predefinidos.
+- `message`: (Opcional) Un mensaje para las transacciónes de la distribución.
 
 ### Respuestas posibles
 
 - `200 OK`: Los tokens fueron distribuidos con éxito. El cuerpo de la respuesta estará vacío.
-- `404 Not Found`: No se encontró el token con el ID proporcionado. El cuerpo de la respuesta será un objeto JSON con la razón del error y un mensaje:
-
-```json
-{
-  "reason": "NOT_FOUND",
-  "msg": "User with ID: <1> not found"
-}
-```
+- `404 Not Found`: No se encontró el token con el ID proporcionado. El cuerpo de la respuesta será un objeto JSON con la razón del error y un mensaje

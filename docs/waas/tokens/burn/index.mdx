@@ -23,6 +23,10 @@ curl --request POST \
     "id": "987f6543-e21b-48c3-a456-987654321000",
     "amount": 10,
     "userId": "123e4567-e89b-12d3-a456-426614174000",
+    "extraData":{
+      "test":"prueba"
+    },
+    "callback":"localhost:3000",
     "message": "Burning 10 tokens"
   }'
 ```
@@ -39,6 +43,10 @@ curl --request POST \
     "id": "987f6543-e21b-48c3-a456-987654321000",
     "amount": 10,
     "userId": "123e4567-e89b-12d3-a456-426614174000",
+    "extraData":{
+      "test":"prueba"
+    },
+    "callback":"localhost:3000",
     "message": "Burning 10 tokens"
   }'
 ```
@@ -52,6 +60,8 @@ curl --request POST \
 - `id`: UUID o Mongo ID para crear la transacción, la cual se podrá consultar en el futuro.
 - `amount`: Cantidad de tokens a quemar.
 - `userId`: ID del usuario al que se le van a quemar los tokens.
+- `extraData`: (Opcional) almacena información adicional que no se ajusta directamente a los campos estándar o predefinidos.
+- `callback`: (Opcional) URL a la que se llamará una vez que se complete una operación
 - `message`: Un mensaje para la transacción.
 
 ### Respuestas posibles
@@ -65,3 +75,7 @@ curl --request POST \
   "msg": "User with ID: <1> not found"
 }
 ```
+
+### Diagrama de secuencia
+
+![Burn central wallet](/img/docs/tokens/burnToken.png)

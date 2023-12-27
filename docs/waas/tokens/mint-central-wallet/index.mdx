@@ -22,7 +22,11 @@ curl --request POST \
   --data '{
     "id": "987f6543-e21b-48c3-a456-987654321000",
     "amount": 2000,
-    "message": "Minting 2000 tokens to centralized wallet"
+    "message": "Minting 2000 tokens to centralized wallet",
+    "extraData":{
+      "test":"prueba"
+    },
+    "callback":"localhost:3000"
   }'
 ```
 
@@ -37,7 +41,11 @@ curl --request POST \
   --data '{
     "id": "987f6543-e21b-48c3-a456-987654321000",
     "amount": 2000,
-    "message": "Minting 2000 tokens to centralized wallet"
+    "message": "Minting 2000 tokens to centralized wallet",
+    "extraData":{
+      "test":"prueba"
+    },
+    "callback":"localhost:3000"
   }'
 ```
 
@@ -50,6 +58,8 @@ curl --request POST \
 - `id`: UUID o Mongo ID para crear la transacción, la cual se podrá consultar en el futuro.
 - `amount`: Cantidad de tokens a mintear.
 - `message`: Un mensaje para la transacción.
+- `extraData`: (Opcional) almacena información adicional que no se ajusta directamente a los campos estándar o predefinidos.
+- `callback`: (Opcional) URL a la que se llamará una vez que se complete una operación
 
 ### Respuestas posibles
 

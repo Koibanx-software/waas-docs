@@ -18,7 +18,8 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "myProject",
-  "description": "My Project description"
+  "description": "My Project description",
+  "blockChain":"algorand"
 }'
 ```
 
@@ -26,6 +27,7 @@ curl --request POST \
 
 - `name`: Nombre del proyecto.
 - `description`: Descripción del proyecto.
+- `blockChain`: BlockChain sobre el cual estara el proyecto.
 
 ### Respuestas
 
@@ -35,6 +37,9 @@ curl --request POST \
   - `secret`: Clave secreta del proyecto.
   - `description`: Descripción del proyecto.
   - `name`: Nombre del proyecto.
+  - `blockChain`: BlockChain sobre el cual estara el proyecto.
+  - `buildType`: BuildType tipo de proyecto.
+  - `projectUrl`: ProjectUrl url del proyecto.
 
 ```
 {
@@ -42,6 +47,9 @@ curl --request POST \
 	"secret": "2Kach+Jqrl8KdaRFDTIbULW65X2exmm2WqrRyTi3W8HusS+l6JsHY8w==",
 	"description": "My Project description",
 	"name": "myProject",
+  "blockChain": "algorand",
+	"buildType": "ENGINE",
+	"projectUrl": "https://localhost:3000"
 }
 ```
 

@@ -13,7 +13,7 @@ La API admite dos métodos de autenticación para acceder a diferentes partes y 
 
 En el dashboard BackOffice, se pueden usar los endpoints del _core_ de **_WaaS_** para cada proyecto. Para acceder a ellos, es necesario autenticarse mediante un JSON Web Token `(JWT)` y el `apiKey` correspondiente al proyecto. Además, el usuario global debe ser el propietario _(owner)_ del proyecto.
 
-Para obtener un `JWT` válido, debes realizar una solicitud de autenticación a través del endpoint `../global-user/signInOtp/signInOtp.md` con las credenciales de usuario en los _headers_. Si las credenciales son válidas, la respuesta incluirá un `JWT` que debe utilizarse en todas las solicitudes a los endpoints del _core_ de **_WaaS_**.
+Para obtener un `JWT` válido, debes realizar una solicitud de autenticación a través del endpoint `/sign-in` con las credenciales de usuario en los _headers_. Si las credenciales son válidas, la respuesta incluirá un `JWT` que debe utilizarse en todas las solicitudes a los endpoints del _core_ de **_WaaS_**.
 
 El prefijo para los endpoints protegidos con JWT es `auth`. Por ejemplo:
 
@@ -37,7 +37,7 @@ Reemplaza **_{baseUrl}_** con la URL base de tu API, **_{JWT}_** con el token v�
 
 En tu aplicación, se pueden usar los endpoints del _core_ de **_WaaS_**, para esto primero debes crear un proyecto. Para autenticarse, el proyecto creado proporciona un par de llaves.
 
-Cada proyecto tiene asignada una `apiKey` y un `Secret` únicos y se obtienen en el momento de crear el proyecto a través del endpoint `../project/create/create.md` o al regenerar el `secret` a través del endpoint `project/update/generateNewSecret.md`. Estos valores deben incluirse en los _headers_ de las solicitudes a los endpoints del _core_ de **_WaaS_**.
+Cada proyecto tiene asignada una `apiKey` y un `Secret` únicos y se obtienen en el momento de crear el proyecto a través del endpoint `/projects` o al regenerar el `secret` a través del endpoint `/projects/secret`. Estos valores deben incluirse en los _headers_ de las solicitudes a los endpoints del _core_ de **_WaaS_**.
 
 El prefijo para los endpoints protegidos con `apiKey` es `auth-pair`. Por ejemplo:
 

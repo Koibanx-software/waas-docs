@@ -1,0 +1,35 @@
+---
+title: "Cambio de contraseña"
+sidebar_position: 2
+---
+
+# Cambio de contraseña
+
+Cambiar una contraseña a un usuario global. A continuación se muestra el formato y los detalles de la solicitud:
+
+### <span>PUT</span> /password
+
+```bash
+curl --request PUT \
+  --url {baseUrl}/password \
+  --header 'Authorization: JWT {token}' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "password": "Koibanx123!",
+	"newPassword": "Koibanx123!2"
+}'
+```
+
+### Parámetros del Cuerpo (JSON)
+
+- `password`: Contraseña que tiene el usuario global actualmente.
+- `newPassword`: Contraseña que se asignará al usuario global.
+
+### Respuestas posibles
+
+- `200 OK`: La contraseña se asignó con éxito.
+- `4xx Invalid Parameters`: Se encontraron parámetros inválidos en la solicitud. El cuerpo de la respuesta contendrá información adicional sobre el error.
+
+### Diagrama de flujo:
+
+![Assign Password](/img/docs/global-user/changePassword.png)

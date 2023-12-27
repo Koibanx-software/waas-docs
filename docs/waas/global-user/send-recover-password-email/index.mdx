@@ -1,0 +1,35 @@
+---
+title: "Enviar Correo de recuperación"
+sidebar_position: 4
+---
+
+# Enviar Correo de recuperación
+
+Envía un Email con las instrucciones para recuperar la contraseña.
+
+### <span>POST</span> /password/recover
+
+```bash
+curl --request POST \
+  --url {baseUrl}/password/recover \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"username": "example@koibanx.com"
+}'
+```
+
+### Parámetros de la solicitud
+
+El cuerpo de la solicitud debe ser un objeto JSON con los siguientes parámetros:
+
+- `username`: Correo electrónico al que se enviará el correo.
+
+### Respuestas posibles
+
+- `200 OK`: Se envió el correo correctamente al correo electrónico proporcionado. La respuesta estará vacía.
+
+- `4xx Invalid Parameters`: Se encontraron parámetros inválidos en la solicitud. El cuerpo de la respuesta contendrá información adicional sobre el error.
+
+### Diagrama de flujo:
+
+![Send OTP](/img/docs/global-user/sendRecoverPasswordEmail.png)

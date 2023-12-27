@@ -1,13 +1,13 @@
 ---
-title: "Mint"
-sidebar_position: 3
+title: "Burn a central wallet"
+sidebar_position: 4
 ---
 
-# Mintear token
+# Burn Token Centralized
 
-Mintea una cantidad específica de un token a un usuario. Este endpoint solo está disponible para tokens de tipo 'default'. Los tokens de tipo 'centralizedSupplyToken' no tienen acceso a este endpoint.
+Quema una cantidad específica de la wallet centralizada
 
-### <span>POST</span> /{prefix}/tokens/{tokenId}/mint
+### <span>POST</span> /{prefix}/tokens/centralized/{tokenId}/burn
 
 ---
 
@@ -15,19 +15,18 @@ Mintea una cantidad específica de un token a un usuario. Este endpoint solo est
 
 ```bash
 curl --request POST \
-  --url '{baseUrl}/auth/tokens/123e4567-e89b-12d3-a456-426614174000/mint' \
+  --url '{baseUrl}/auth/tokens/centralized/123e4567-e89b-12d3-a456-426614174000/burn' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: JWT {JWT}' \
   --header 'apiKey: {apiKey}' \
   --data '{
     "id": "987f6543-e21b-48c3-a456-987654321000",
     "amount": 10,
-    "userId": "987f6543-e21b-48c3-a456-987654321000",
-    "message": "Minting 10 tokens",
     "extraData":{
       "test":"prueba"
     },
     "callback":"localhost:3000",
+    "message": "Burning 10 tokens"
   }'
 ```
 
@@ -35,34 +34,36 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url '{baseUrl}/auth-pair/tokens/123e4567-e89b-12d3-a456-426614174000/mint' \
+  --url '{baseUrl}/auth-pair/tokens/centralized/123e4567-e89b-12d3-a456-426614174000/burn' \
   --header 'Content-Type: application/json' \
   --header 'apiKey: {apiKey}' \
   --header 'secret: {Secret}' \
   --data '{
     "id": "987f6543-e21b-48c3-a456-987654321000",
     "amount": 10,
-    "userId": "987f6543-e21b-48c3-a456-987654321000",
-    "message": "Minting 10 tokens",
     "extraData":{
       "test":"prueba"
     },
     "callback":"localhost:3000",
+    "message": "Burning 10 tokens"
   }'
 ```
+
+### Parámetros de la URL
+
+- `tokenId`: ID del token existente.
 
 ### Parámetros del cuerpo
 
 - `id`: UUID o Mongo ID para crear la transacción, la cual se podrá consultar en el futuro.
-- `amount`: Cantidad de tokens a mintear.
-- `userId`: ID del usuario al que se le van a mintear los tokens.
-- `message`: Un mensaje para la transacción.
+- `amount`: Cantidad de tokens a quemar.
 - `extraData`: (Opcional) almacena información adicional que no se ajusta directamente a los campos estándar o predefinidos.
 - `callback`: (Opcional) URL a la que se llamará una vez que se complete una operación
+- `message`: Un mensaje para la transacción.
 
 ### Respuestas posibles
 
-- `200 OK`: Los tokens fueron minteados con éxito. El cuerpo de la respuesta estará vacío.
+- `200 OK`: Los tokens fueron quemados con éxito. El cuerpo de la respuesta estará vacío.
 - `404 Not Found`: No se encontró el token con el ID proporcionado. El cuerpo de la respuesta será un objeto JSON con la razón del error y un mensaje:
 
 ```json
@@ -71,3 +72,7 @@ curl --request POST \
   "msg": "User with ID: <1> not found"
 }
 ```
+
+### Diagrama de secuencia
+
+![Burn central wallet](/img/docs/tokens/burnTokenCentralWallet.png)

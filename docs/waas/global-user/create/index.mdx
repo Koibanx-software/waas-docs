@@ -1,6 +1,6 @@
 ---
 title: "Crear"
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Crear un usuario global
@@ -22,17 +22,17 @@ curl --request POST \
 }'
 ```
 
-### Parámetros del Cuerpo (JSON)
+## Parámetros del Cuerpo (JSON)
 
 - `username`: Correo electrónico del usuario global.
 - `name`: Nombre del usuario global.
 - `lastName`: Apellido del usuario global.
 
-### Respuestas Posibles
+## Respuestas Posibles
 
 - `200 OK`: El usuario global se creó con éxito. La respuesta estará vacía.
 - `4xx Bad Request`: Se produjo un error debido a parámetros inválidos. Consulta el cuerpo de la respuesta para obtener más detalles sobre el error.
 
-### Diagrama de Flujo:
+## Diagrama de Flujo:
 
 ![Create Global User](/img/docs/global-user/createGlobalUser.png)

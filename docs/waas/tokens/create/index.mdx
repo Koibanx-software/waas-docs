@@ -42,7 +42,11 @@ curl --request POST \
     "code": "mtk",
     "description": "My Token description",
     "type": "centralizedSupplyToken",
-    "initialSupply": 1000
+    "initialSupply": 1000,
+    "extraData":{
+      "test":"prueba"
+    },
+    "callback":"localhost:3000"
   }'
 ```
 
@@ -54,6 +58,8 @@ curl --request POST \
 - `description`: Descripción del token.
 - `type`: Tipo de token, puede ser 'token' o 'centralizedSupplyToken'.
 - `initialSupply`: (Opcional) Suministro inicial para el tipo 'centralizedSupplyToken'. Debe ser un número positivo.
+- `extraData`: (Opcional) almacena información adicional que no se ajusta directamente a los campos estándar o predefinidos.
+- `callback`: (Opcional) URL a la que se llamará una vez que se complete una operación
 
 ### Respuestas posibles
 
