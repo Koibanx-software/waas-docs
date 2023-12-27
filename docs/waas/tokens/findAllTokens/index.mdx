@@ -1,0 +1,114 @@
+---
+title: "Obtener todos los Tokens"
+sidebar_position: 2
+---
+
+# Obtener todos los Tokens
+
+Recupera los detalles de todos los tokens. Esta solicitud es filtrada automáticamente por proyecto, basándose en la autenticación utilizada durante la solicitud.
+
+### <span>GET</span> /{prefix}/tokens
+
+---
+
+### Autenticación de Usuarios Globales (JWT)
+
+```bash
+curl --request GET \
+  --url '{baseUrl}/auth/tokens' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: JWT {JWT}' \
+  --header 'apiKey: {apiKey}'
+```
+
+### Autenticación de Proyectos (apiKey)
+
+```bash
+curl --request GET \
+  --url '{baseUrl}/auth-pair/tokens' \
+  --header 'Content-Type: application/json' \
+  --header 'apiKey: {apiKey}' \
+  --header 'secret: {Secret}'
+```
+
+## Parámetros de la URL
+
+- `page`: Número de página para la paginación de resultados. Valor predeterminado: 1.
+- `limit`: Número máximo de usuarios por página. Valor predeterminado: 10.
+- `filters`: (Opcional) Filtros segun el **_patron criteria_**.
+- `sort`: (Opcional) Orden segun el **_patron criteria_**.
+
+**_NOTA:_** Para el patron criteria se utiliza la siguiente entidad para mayor información consulta esta [documentacion](https://wiki.koibanx.com/es/devs/Tooling/criteria-pattern)
+
+```typeScript
+    type Token = {
+      id: string;
+      description: string;
+      name: string;
+      code: string;
+      status: string;
+      addressHash: string;
+      callback: string;
+      addressWalletHash: string;
+      projectId: string;
+      type: string;
+      expirationDate: Date;
+      extraData: object;
+      initialSupply: number;
+      totalSupply: number;
+      createdAt: Date;
+    };
+```
+
+## Respuestas posibles
+
+- `200 OK`: Se obtuvieron las tokens paginadas con éxito. El cuerpo de la respuesta será un objeto JSON con la siguiente información:
+
+  - `pages`: Número total de páginas.
+  - `total`: Número total de tokens.
+  - `limit`: Límite de tokens por página.
+  - `page`: Página actual.
+  - `results`: Lista de tokens en la página actual. Cada distribución es un objeto que contiene los siguientes detalles:
+
+    - `id`: ID del token.
+    - `name`: Nombre del token.
+    - `code`: Código del token.
+    - `description`: Descripción del token.
+    - `status`: Estado del token.
+    - `type`: Tipo de token, puede ser 'token' o 'centralizedSupplyToken'.
+    - `projectId`: ID del proyecto al que pertenece el token.
+    - `initialSupply`: (Solo para 'centralizedSupplyToken') Suministro inicial del token.
+    - `totalSupply`: Cantidad de tokens en circulación entre los usuarios locales y la wallet concentradora.
+    - `balance`: (Solo para 'centralizedSupplyToken') Balance de la wallet central del token.
+    - `extraData`: (Opcional) información adicional que no se ajusta directamente a los campos estándar o predefinidos.
+    - `callback`: (Opcional) URL a la que se llamará una vez que se complete una operación
+
+  Ejemplo de cuerpo de respuesta:
+
+  ```json
+  {
+    "pages": 2,
+    "total": 13,
+    "limit": "10",
+    "page": "1",
+    "results": [
+                {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "name": "myToken",
+          "code": "mtk",
+          "description": "My Token description",
+          "status": "active",
+          "type": "centralizedSupplyToken",
+          "projectId": "987f6543-e21b-48c3-a456-987654321000",
+          "initialSupply": 1000,
+          "totalSupply": 1500,
+          "balance": 2000,
+          "extraData":{
+            "test":"prueba"
+          },
+          "callback":"localhost:3000",
+        },
+        ...
+    ]
+  }
+  ```

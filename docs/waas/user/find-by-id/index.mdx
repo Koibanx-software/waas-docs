@@ -31,17 +31,19 @@ curl --request GET \
   --header 'secret: {Secret}'
 ```
 
-### Parámetros de la URL
+## Parámetros de la URL
 
 - `userId`: ID del usuario que se desea obtener.
 
-### Respuestas posibles
+## Respuestas posibles
 
 - `200 OK`: Se obtuvieron los detalles del usuario con éxito. El cuerpo de la respuesta será un objeto JSON con los detalles del usuario:
 
   - `username`: Nombre de usuario del usuario.
   - `projectId`: ID del proyecto al que pertenece el usuario.
   - `tokensHolding`: Lista de tokens que el usuario posee.
+  - `extraData`: (Opcional) información adicional que no se ajusta directamente a los campos estándar o predefinidos.
+  - `callback`: (Opcional) URL a la que se llamará una vez que se complete la operación
   - `id`: ID del usuario.
 
 ```json
@@ -49,7 +51,11 @@ curl --request GET \
   "username": "test.receiver@koibanx.com",
   "projectId": "45bf84cf-e9c7-4b2c-9a7e-363f83865441",
   "tokensHolding": [],
-  "id": "8f3f8da2-7529-4543-85fc-9ff492102760"
+  "id": "8f3f8da2-7529-4543-85fc-9ff492102760",
+  "extraData": {
+    "test": "prueba"
+  },
+  "callback": "localhost:3000"
 }
 ```
 

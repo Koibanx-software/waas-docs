@@ -1,5 +1,5 @@
 ---
-title: "Obtener detalles"
+title: "Obtener detalles de un token"
 sidebar_position: 2
 ---
 
@@ -11,7 +11,7 @@ Obtiene la información de un token existente utilizando su ID.
 
 ---
 
-#### Autenticación de Usuarios Globales (JWT)
+### Autenticación de Usuarios Globales (JWT)
 
 ```bash
 curl --request GET \
@@ -21,7 +21,7 @@ curl --request GET \
   --header 'apiKey: {apiKey}'
 ```
 
-#### Autenticación de Proyectos (apiKey)
+### Autenticación de Proyectos (apiKey)
 
 ```bash
 curl --request GET \
@@ -31,11 +31,11 @@ curl --request GET \
   --header 'secret: {Secret}'
 ```
 
-### Parámetros de la URL
+## Parámetros de la URL
 
 - `tokenId`: ID del token existente.
 
-### Respuestas posibles
+## Respuestas posibles
 
 - `200 OK`: El token fue obtenido con éxito. El cuerpo de la respuesta será un objeto JSON con la información del token:
 
@@ -50,7 +50,11 @@ curl --request GET \
   "projectId": "987f6543-e21b-48c3-a456-987654321000",
   "initialSupply": 1000,
   "totalSupply": 1500,
-  "balance": 2000
+  "balance": 2000,
+  "extraData": {
+    "test": "prueba"
+  },
+  "callback": "localhost:3000"
 }
 ```
 
@@ -66,7 +70,5 @@ Los campos en la respuesta son:
 - `initialSupply`: (Solo para 'centralizedSupplyToken') Suministro inicial del token.
 - `totalSupply`: Cantidad de tokens en circulación entre los usuarios locales y la wallet concentradora.
 - `balance`: (Solo para 'centralizedSupplyToken') Balance de la wallet central del token.
-
-### Diagrama de secuencia
-
-![Flujo crear un token](/img/docs/tokens/getToken.png "FlowCreateToken")
+- `extraData`: (Opcional) información adicional que no se ajusta directamente a los campos estándar o predefinidos.
+- `callback`: (Opcional) URL a la que se llamará una vez que se complete una operación

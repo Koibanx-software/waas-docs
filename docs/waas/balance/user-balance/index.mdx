@@ -11,7 +11,7 @@ Recupera los saldos de un usuario para los tokens. Esta solicitud admite un par�
 
 ---
 
-#### Autenticación de Usuarios Globales (JWT)
+### Autenticación de Usuarios Globales (JWT)
 
 ```bash
 curl --request GET \
@@ -21,7 +21,7 @@ curl --request GET \
   --header 'apiKey: {apiKey}'
 ```
 
-#### Autenticación de Proyectos (apiKey)
+### Autenticación de Proyectos (apiKey)
 
 ```bash
 curl --request GET \
@@ -31,29 +31,69 @@ curl --request GET \
   --header 'secret: {Secret}'
 ```
 
-### Parámetros de la URL
+## Parámetros de la URL
 
 - `userId`: ID del usuario para obtener sus saldos.
 - `page` (opcional): Número de página para la paginación de resultados. Valor predeterminado: 1.
 - `limit` (opcional): Número máximo de saldos de usuario por página. Valor predeterminado: 10.
-- `tokenId` (opcional): ID del token para filtrar los saldos del usuario. Si no se proporciona este parámetro, se devolverán los saldos del usuario para todos los tokens.
+- `filters`: (Opcional) Filtros segun el **_patron criteria_**.
+- `sort`: (Opcional) Orden segun el **_patron criteria_**.
 
-### Respuestas posibles
+**_NOTA:_** Para el patron criteria se utiliza la siguiente entidad para mayor información consulta esta [documentacion](https://wiki.koibanx.com/es/devs/Tooling/criteria-pattern)
 
-- `200 OK`: Se obtuvieron los saldos del usuario con éxito. El cuerpo de la respuesta será una lista de objetos JSON, donde cada objeto representa un saldo del usuario con los siguientes detalles:
+```typeScript
+    type Balance = {
+      tokenId: string;
+      balance: number;
+      block: boolean;
+    };
+```
 
-  - `token`: Nombre del token.
-  - `balance`: Saldo del usuario para el token especificado.
-  - `block`: Estado del balance bloqueo (true o false).
+## Respuestas posibles
+
+- `200 OK`: Se obtuvieron los balances paginadas con éxito. El cuerpo de la respuesta será un objeto JSON con la siguiente información:
+
+  - `pages`: Número total de páginas.
+  - `total`: Número total de balances.
+  - `limit`: Límite de balances por página.
+  - `page`: Página actual.
+  - `results`: Lista de balances en la página actual. Cada balance es un objeto que contiene los siguientes detalles:
+
+    - `tokenId`: Id del token del balance
+    - `token`: {
+      - `code`: Codigo del token
+      - `name`: Nombre del token
+      - `id`: Id del token
+        }
+    - `balance`: Saldo del usuario para el token especificado.
+    - `block`: Estado del balance bloqueo (true o false).
+
+  Ejemplo de cuerpo de respuesta:
+
+  ```json
+  {
+    "pages": 2,
+    "total": 13,
+    "limit": "10",
+    "page": "1",
+    "results": [
+               {
+                "tokenId":"7ba2e8fb-5879-471e-a55b-6554808b128d",
+                "token": {
+                    "code": "code",
+                    "name": "MiToken",
+                    "id": "7ba2e8fb-5879-471e-a55b-6554808b128d"
+                  },
+                "balance": 100,
+                "block": false
+              },
+        ...
+    ]
+  }
+  ```
 
 ```json
-[
-  {
-    "token": "Mytoken",
-    "balance": 100,
-    "block": false
-  }
-]
+[]
 ```
 
 - `4xx Invalid Parameters`: Se encontraron parámetros inválidos en la solicitud. El cuerpo de la respuesta contendrá información adicional sobre el error.
